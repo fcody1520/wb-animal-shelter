@@ -83,3 +83,9 @@ for (let a of animalData) {
     }
     Shelter.addAnimal(animal)
 }
+
+
+for (const animal of shelter.animals){
+    animal.greet()
+    animal.feed()
+}
