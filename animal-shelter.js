@@ -19,7 +19,35 @@ class Animal {
 }
 
 class Cat extends Animal{
-    
+    constructor(name, color, hunger = 50){
+        super(name, 'cat', color, hunger)
+        this.food = 'fish'
+    }
+
+    greet(){
+        console.log(`Meow, I'm ${this.name} the ${this.species}!`);
+    }
+
+    feed(){
+        this.hunger -= 20
+        console.log(`Yum, I love ${this.food}!`);
+    }
+}
+
+class Dog extends Animal{
+    constructor(name, color, hunger = 50){
+        super(name, 'dog', color, hunger)
+        this.food = 'kibble'
+    }
+
+    greet(){
+        console.log(`Woof, I'm ${this.name} the ${this.species}!`);
+    }
+
+    feed(){
+        this.hunger -= 20
+        console.log(`Yum, I love ${this.food}!`);
+    }
 }
 
 
@@ -43,9 +71,15 @@ class AnimalShelter{
 }
 
 const shelter = new AnimalShelter();
-
 for (let a of animalData) {
+    let animal;
     const hunger = a.hunger ? a.hunger : 50;
-    const animal = new Animal(a.name, a.species, a.color, hunger)
+    if(a.species === 'dog'){
+        animal = new Dog(a.name, a.color, hunger)
+    } else if (a.species === 'cat') {
+        animal = new Cat(a.name, a.species, hunger)
+    } else {
+        animal = new Animal(a.name, a.species, a.color, hunger)
+    }
     Shelter.addAnimal(animal)
 }
